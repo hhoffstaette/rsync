@@ -249,7 +249,7 @@ static int receive_data(int f_in, char *fname_r, int fd_r, OFF_T size_r,
 	char *map = NULL;
 
 #ifdef SUPPORT_PREALLOCATION
-	if (preallocate_files && fd != -1 && total_size > 0 && (!inplace_sizing || total_size > size_r)) {
+	if (preallocate_files && fd != -1 && total_size >= (128*1024*1024) && (!inplace_sizing || total_size > size_r)) {
 		/* Try to preallocate enough space for file's eventual length.  Can
 		 * reduce fragmentation on filesystems like ext4, xfs, and NTFS. */
 		if ((preallocated_len = do_fallocate(fd, 0, total_size)) < 0)
