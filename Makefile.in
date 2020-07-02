@@ -138,7 +138,7 @@ git-version.h: mkgitver $(wildcard $(srcdir)/.git/logs/HEAD)
 	$(srcdir)/mkgitver
 
 simd-checksum-x86_64.o: simd-checksum-x86_64.cpp
-	@$(srcdir)/cmdormsg disable-simd $(CXX) -I. $(CXXFLAGS) $(CPPFLAGS) -c -o $@ $(srcdir)/simd-checksum-x86_64.cpp
+	@$(srcdir)/cmdormsg disable-simd $(CXX) -I. $(CXXFLAGS) $(CPPFLAGS) -O3 -c -o $@ $(srcdir)/simd-checksum-x86_64.cpp
 
 lib/md5-asm-x86_64.o: lib/md5-asm-x86_64.S config.h lib/md-defines.h
 	@$(srcdir)/cmdormsg disable-asm $(CC) -I. @NOEXECSTACK@ -c -o $@ $(srcdir)/lib/md5-asm-x86_64.S
